@@ -28,7 +28,8 @@ gruppe = {  'student1': '-', \
 #    \_ /_/
 #    (./
 #     '` 
-even = """
+
+ice = """
        \\/_
   \\,   /( ,/
    \\\\\\' ///
@@ -36,8 +37,9 @@ even = """
     (./
      '` 
 """
+
 def ascii_bird():
-	print even 
+	print ice
 
 ascii_bird()
 
@@ -46,13 +48,22 @@ ascii_bird()
 #    bitAnd - x&y
 #	 Implementer funksjonen som gjør en "bitwise" AND operasjon (erstatt pass)
 #    Eksempel: bitAnd(6, 5) = 4
-#		Forklaring: 6 binært er 110, mens 5 er 101. Hvis vi sammenligner bitvis
-#					1 AND 1 gir 1, 1 AND 0 gir 0 og 0 AND 1 gir 0 => 100 binært
-#					er 4 desimalt. Antagelse: posisjonsbasert tallsystem og 
-#					den mest signifikante bit-en er lengst til venstre
-def bitAnd(x, y):
-	pass
+#		Forklaring:
+#		6 binært er 110, mens 5 er 101. Hvis vi sammenligner bitvis
+#		1 AND 1 gir 1, 1 AND 0 gir 0 og 0 AND 1 gir 0 => 100 binært
+#		er 4 desimalt. Antagelse: posisjonsbasert tallsystem og 
+#		den mest signifikante bit-en er lengst til venstre
+#
+#
+# Bitwise opererer med tall men behandler dem som om de er string av bits,
+# istedenfor single verdier. 
+# <<, >>, & (and), | (or), ~ og ^ (exclusive or) er bitwise operators. 
+# For å bruke "bitwise and" som oppgaven spør om bruker vi "&" funksjonen. 
 
+
+def bitAnd(x, y):
+	return x&y
+print bitAnd(1, 1)
 
 #
 #  Oppgave 3
@@ -60,15 +71,18 @@ def bitAnd(x, y):
 #    Eksempel: bitXor(4, 5) = 1
 #
 def bitXor(x, y):
-	pass
+	return x^y
+print bitXor(0, 1)
 
 #
 #  Oppgave 4
 #    bitOr - x|y
 #    Eksempel: bitOr(0, 1) = 1
-#
+# Visst både x og y er 0 blir dette 0. Visst ikke blir dette 1
+
 def bitOr(x, y):
-	pass
+	return x|y
+print bitOr(1, 0)
 
 #
 #  Oppgave 5
@@ -90,9 +104,22 @@ def bitOr(x, y):
 #	 Hvilke begrensninger vil en slik funksjon ha? (tips: prøv med bokstaven 'å', f.eks.)
 #	 Forklar resultatet ascii8Bin('å')
 #	 Hvilke faktorer påvirker resultatet? Forklar.
-#
-def ascii8Bin(letter):
-	pass
+# 
+# ord() funksjonen støtter ikke bruk av f. eks bokstaver som æøå
+
+print "\nType a single letter, can be upper or lower case:" 
+# gjør bokstav valgfri for brukeren
+letter = raw_input() 
+
+# definerer en funksjon med letter variabelen
+def ascii8Bin(letter): 
+	# innhold i funksjonen vår:
+	return '{0:08b}'.format(ord(letter)) #formaterer med bruk av ord() funksjonen
+# printer resultatet av funksjonen vår
+print "With the ord() function your letter formats to %r" % (ord(letter))
+print "Then, formatted to binary it is %r" % (ascii8Bin(letter))
+
+
 
 # 
 #  Oppgave 6
@@ -104,11 +131,21 @@ def ascii8Bin(letter):
 #	 Forklart hver linje i denne funksjonen (hva er list, hva gjør in)
 #	 Skriv selv inn tester ved å bruke assert i funksjonen test()
 #
+
+print "\nType a word with maximum of 6 letters, can be upper or lower case:"
+string = raw_input()
+
 def transferBin(string): 
+	# vi lager variabel 'l' til en liste av string
 	l = list(string)
+	# itererer over l for å finne c. 
 	for c in l:
 		# skriv ut den binære representasjon av hvert tegn (bruk ascii8Bin funksjonen din)
-		print "Den binære representasjonen for %s" % c
+		print "Den binære representasjonen for %s" % (ascii8Bin(c)) 
+# bruk funksjonen vår
+transferBin(string)
+
+
 
 #
 #  Oppgave 7
@@ -118,10 +155,18 @@ def transferBin(string):
 #					med 2 heksadesimale tegn
 #    Skriv selv inn tester ved å bruke assert i funksjonen test()
 #  
-def transferHex(string):
-	l = list(string)
-	for c in l:
-		print "Den heksadesimale representasjonen for %s" % c
+
+#print "\n "
+#def ascii2Hex(c): 
+#	# innhold i funksjonen vår:
+#	return '{0:08x}'.format(ord(c)) 
+#
+#def transferHex(string):
+#	l = list(string)
+#	for c in l:
+#		print "Den heksadesimale representasjonen for %s" % ascii2Hex(c)
+#
+#transferHex('string')
 
 #
 # Oppgave 8
@@ -148,8 +193,20 @@ def unicodeBin(character):
 #	Kan dere skrive en test for denne funksjonen?
 #	Hvilke andre muligheter har man for å finne informasjon om maskinvare i GNU/Linux?
 #
+# Kilder: http://amitsaha.github.io/site/notes/articles/python_linux/article.html
+
+import platform
+
+
 def printSysInfo():
-	pass
+
+	print "\nSystem info:"
+	print "OS: " +platform.uname()[0]
+	print "User Name: " +platform.uname()[1]
+	print "Distribution: %s" %(platform.linux_distribution(), )
+
+printSysInfo()
+
 
 
 def test():
@@ -168,3 +225,4 @@ def test():
 # Bruk denne funksjonen for å vise at alle testene er kjørt feilfritt
 #print test()
 		
+
