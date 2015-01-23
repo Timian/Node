@@ -10,7 +10,7 @@
 import sys
 
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
-gruppe = {  'student1': Daniel Eide, \
+gruppe = { Jørgen Lybeck Hansen: Daniel Eide, \
 			'student2': '-', \
             'student3': '-', \
 }
@@ -92,7 +92,7 @@ print bitOr(1, 0)
 #      ord('A') , det vil gi et tall 65 i ti-tallssystemet
 #    For å formattere 6 i ti-tallssystemet til 00000110 i to-tallssystemet
 #      '{0:08b}'.format(6)
-#      00000110
+#      00000110 
 #
 #    Formatteringsstrengen forklart:
 #      {} setter en variabel inn i strengen
