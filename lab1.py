@@ -15,7 +15,7 @@ gruppe = { 	'student1': 'Daniel Eide', \
            	'student3': 'Jørn Utheim-Olsen', \
            	'student3': 'Jonas Dam', \
            	'student3': 'Elaine Sajets', \
-           	'student3': 'test 6', \
+           	'student3': 'Christian Fredrik Thorne', \
            	'student3': 'test 7', \
            	'student3': 'test 8', \
 }
