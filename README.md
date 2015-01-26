@@ -15,3 +15,16 @@ Basic bruk av git:
 4. git push origin master'
 
 Vi burde sette oss inn i git og hvordan vi arbeider med det i praksis. Google stikkord som 'git fork', 'git branches', 'pull request' og 'git merge'.
+
+cat test.txt (shows the file)
+echo "This is a test file." > test.txt (creates a new file with content
+touch test.txt (creates new file)
+ls 
+dir
+mkdir
+ls *.py (henter alle python filer)
+ls ex*
+mv filnavn directory 
+mv filnavn filnavn
+sudo
+rm -r filnavn  (delete)
