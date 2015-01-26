@@ -16,7 +16,7 @@ Basic bruk av git:
 
 Vi burde sette oss inn i git og hvordan vi arbeider med det i praksis. Google stikkord som 'git fork', 'git branches', 'pull request' og 'git merge'.
 
-Linux Command:
+Linux Commands:
 cat test.txt (shows the file)
 echo "This is a test file." > test.txt (creates a new file with content
 touch test.txt (creates new file)
