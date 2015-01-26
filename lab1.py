@@ -161,21 +161,7 @@ transferBin(string)
 #    Skriv selv inn tester ved å bruke assert i funksjonen test()
 #  
 
-<<<<<<< HEAD
-print "\n "
-print "Skriv et ord med max 6 bokstaver."
-c = raw_input()
-def ascii2Hex(c): 
-	# innhold i funksjonen vår:
-	return '{0:08x}'.format(ord(c)) 
 
-def transferHex(string):
-	l = list(string)
-	for c in l:
-		print "Den heksadesimale representasjonen for %s" % ascii2Hex(c)
-
-transferHex('string')
-=======
 print "\nSkriv ett ord med max 6 bokstaver, kan være store eller små bokstaver:"
 string = raw_input()
 
@@ -189,7 +175,6 @@ def transferHex(string):
         print "Den heksadesimale representasjonen for bokstavene i ordet ditt er %s" % ascii2Hex(c)
         
 transferHex(string)
->>>>>>> 2785b7535ae770172e924cabd06fcb443c275911
 
 #
 # Oppgave 8
