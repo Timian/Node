@@ -5,6 +5,7 @@ Prosess for å hente nyeste endringer fra filer, gjøre endringer,
 og å legge den til i git igjen:
 
 Basic bruk av git: 
+
 1. git pull > endre fil 
 
 2. git add FILNAVN HER 
