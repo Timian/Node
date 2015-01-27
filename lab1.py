@@ -16,7 +16,7 @@ gruppe = { 	'student1': 'Daniel Eide', \
            	'student3': 'Jonas Dam', \
            	'student3': 'Elaine Sajets', \
            	'student3': 'Christian Fredrik Thorne', \
-           	'student3': 'test 7', \
+           	'student3': 'Bastian Strang', \
            	'student3': 'test 8', \
 }
 
@@ -112,7 +112,7 @@ print bitOr(1, 0)
 # 
 # ord() funksjonen støtter ikke bruk av f. eks bokstaver som æøå
 
-print "\nType a single letter, can be upper or lower case:" 
+print "\nSkriv en enkel bokstav. Den kan være stor eller liten:" 
 # gjør bokstav valgfri for brukeren
 letter = raw_input() 
 
@@ -121,8 +121,8 @@ def ascii8Bin(letter):
 	# innhold i funksjonen vår:
 	return '{0:08b}'.format(ord(letter)) #formaterer med bruk av ord() funksjonen
 # printer resultatet av funksjonen vår
-print "With the ord() function your letter formats to %r" % (ord(letter))
-print "Then, formatted to binary it is %r" % (ascii8Bin(letter))
+print "Med ord() funksjonen formateres bokstaven din til %r" % (ord(letter))
+print "I binær er den %r" % (ascii8Bin(letter))
 
 
 
@@ -137,7 +137,7 @@ print "Then, formatted to binary it is %r" % (ascii8Bin(letter))
 #	 Skriv selv inn tester ved å bruke assert i funksjonen test()
 #
 
-print "\nType a word with maximum of 6 letters, can be upper or lower case:"
+print "\nSkriv ett ord med max 6 bokstaver, kan være store eller små bokstaver:"
 string = raw_input()
 
 def transferBin(string): 
@@ -146,7 +146,7 @@ def transferBin(string):
 	# itererer over l for å finne c. 
 	for c in l:
 		# skriv ut den binære representasjon av hvert tegn (bruk ascii8Bin funksjonen din)
-		print "Den binære representasjonen for %s" % (ascii8Bin(c)) 
+		print "Den binære representasjonen for bokstavene i ordet ditt er %s" % (ascii8Bin(c)) 
 # bruk funksjonen vår
 transferBin(string)
 
@@ -170,18 +170,26 @@ def ascii2Hex(c):
     return '{0:02x}'.format(ord(c))
     
 def transferHex(string):
-    a2 = list(string)
-    for c in a2:
+    l2 = list(string)
+    for c in l2:
         print "Den heksadesimale representasjonen for bokstavene i ordet ditt er %s" % ascii2Hex(c)
         
 transferHex(string)
 
 #
 # Oppgave 8
-# 		Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
-# 		Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
+# Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
+# Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
+print "\nSkriv en bokstav, gjerne Æ Ø eller Å. Den kan være stor eller liten:" 
+# Bruker skriver inn en bokstav. Unicode er ok.
+character = unicode(raw_input(), 'utf8')
+
 def unicodeBin(character):
-	pass	
+	# innhold i funksjonen vår:
+	return '{0:08b}'.format(ord(character)) #formaterer med bruk av ord() funksjonen
+# printer resultatet av funksjonen vår
+print "Med ord() funksjonen formateres bokstaven din til %r" % (ord(character))
+print "I binær er den %r" % (unicodeBin(character))		
 
 #
 # Oppgave 9

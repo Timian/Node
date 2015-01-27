@@ -63,7 +63,7 @@ def int_to_roman(int):
         Converts a decimanl number to roman number.
         Example: int_to_roman(10) => "x"
     """
-    HEI
+    
     return "x"
     pass
 
@@ -71,4 +71,4 @@ def roman_to_int(roman):
     pass
     
 print int_to_roman.__doc__
-print int_to_roman(10)    
+print int_to_roman(10)
