@@ -4,7 +4,7 @@ Daniel Eide, Jørgen Lybeck Hansen, Jørn Utheim-Olsen, Jonas Dam, Elaine Sajets
 
 
 
-# Basic bruk av Git
+## Basic bruk av Git
 
 1. git pull 
 
@@ -26,7 +26,7 @@ Daniel Eide, Jørgen Lybeck Hansen, Jørn Utheim-Olsen, Jonas Dam, Elaine Sajets
 
 
 
-# Linux Terminal Commands:
+## Linux Terminal Commands:
 
 cat test.txt (shows the file)
 
