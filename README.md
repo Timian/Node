@@ -1,10 +1,10 @@
 # Node
-Skoleprosjekt
+## Skoleprosjekt av:
+Daniel Eide, Jørgen Lybeck Hansen, Jørn Utheim-Olsen, Jonas Dam, Elaine Sajets, Christian Fredrik Thorne, Bastian Strang
 
-Prosess for å hente nyeste endringer fra filer, gjøre endringer,
-og å legge den til i git igjen:
 
-Basic bruk av git: 
+
+# Basic bruk av Git
 
 1. git pull 
 
@@ -24,10 +24,9 @@ Basic bruk av git:
 
 	* Push filen når den er ordnet i. Git klarer å se at du har arbeidet med en fil som har vært i konflikt og vil derfor laste opp filen din uten problem etter å ha endret feil i en merge conflict.
 
-Vi burde sette oss inn i git og hvordan vi arbeider med det i praksis. Google stikkord som 'git fork', 'git branches', 'pull request' og 'git merge'.
 
 
-Linux Terminal Commands:
+# Linux Terminal Commands:
 
 cat test.txt (shows the file)
 
