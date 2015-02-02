@@ -114,7 +114,7 @@ print bitOr(1, 0)
 
 print "\nSkriv en enkel bokstav. Den kan være stor eller liten:" 
 # gjør bokstav valgfri for brukeren
-letter = raw_input() 
+letter = raw_input("> ") 
 
 # definerer en funksjon med letter variabelen
 def ascii8Bin(letter): 
@@ -138,7 +138,7 @@ print "I binær er den %r" % (ascii8Bin(letter))
 #
 
 print "\nSkriv ett ord med max 6 bokstaver, kan være store eller små bokstaver:"
-string = raw_input()
+string = raw_input("> ")
 
 def transferBin(string): 
 	# vi lager variabel 'l' til en liste av string
@@ -163,7 +163,7 @@ transferBin(string)
 
 
 print "\nSkriv ett ord med max 6 bokstaver, kan være store eller små bokstaver:"
-string = raw_input()
+string = raw_input("> ")
 
 def ascii2Hex(c):
     #innhold i funksjonen vår
@@ -176,20 +176,33 @@ def transferHex(string):
         
 transferHex(string)
 
+##
+## Oppgave 8
+## Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
+## Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
+## Bruker skriver inn en bokstav. Unicode er ok.
+#character = unicode(raw_input(), 'utf8')
 #
-# Oppgave 8
-# Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
-# Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
-print "\nSkriv en bokstav, gjerne Æ Ø eller Å. Den kan være stor eller liten:" 
-# Bruker skriver inn en bokstav. Unicode er ok.
-character = unicode(raw_input(), 'utf8')
+#def unicodeBin(character):
+#	# innhold i funksjonen vår:
+#	return '{0:08b}'.format(ord(character)) #formaterer med bruk av ord() funksjonen
+## printer resultatet av funksjonen vår
+#print "Med ord() funksjonen formateres bokstaven din til %r" % (ord(character))
+#print "I binær er den %r" % (unicodeBin(character))		
 
+print "\nSkriv en bokstav, gjerne Æ Ø eller Å. Den kan være stor eller liten:" 
+
+char = raw_input("> ")
 def unicodeBin(character):
-	# innhold i funksjonen vår:
-	return '{0:08b}'.format(ord(character)) #formaterer med bruk av ord() funksjonen
-# printer resultatet av funksjonen vår
-print "Med ord() funksjonen formateres bokstaven din til %r" % (ord(character))
-print "I binær er den %r" % (unicodeBin(character))		
+	utf8_byte_array = bytearray(format(character))
+	uba = []
+	# Itererer gjennom det formaterte unicodesumbolet
+	for n in range (len(format(character))):
+		uba.append("{0:08b}".format(utf8_byte_array[n]))
+		# konverterer listen til en string bestående av den binære koden til symbolet
+		uni_bin = ' '.join(uba)
+	return uni_bin
+print unicodeBin(char)
 
 #
 # Oppgave 9

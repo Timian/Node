@@ -16,14 +16,14 @@ Daniel Eide, Jørgen Lybeck Hansen, Jørn Utheim-Olsen, Jonas Dam, Elaine Sajets
 
 5. git push origin master (eller navnet på branch)
 
-	Når du pusher og får en merge conflict:
 
-	* Kjør en git pull for å merge filene
+## Når du pusher og får en merge conflict:
 
-	* Åpne filene og fiks alle steder som inneholder konflikter. Fjern git linjer osv.
+1. Kjør en git pull for å merge filene
 
-	* Push filen når den er ordnet i. Git klarer å se at du har arbeidet med en fil som har vært i konflikt og vil derfor laste opp filen din uten problem etter å ha endret feil i en merge conflict.
+2. Åpne filene og fiks alle steder som inneholder konflikter. Fjern git linjer osv.
 
+3. Push filen når den er ordnet i. Git klarer å se at du har arbeidet med en fil som har vært i konflikt og vil derfor laste opp filen din uten problem etter å ha endret feil i en merge conflict.
 
 
 ## Linux Terminal Commands:
