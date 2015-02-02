@@ -36,8 +36,12 @@ men syntaxen krever en statement.
 
 Ressursjer:
 http://courses.cs.vt.edu/~csonline/NumberSystems/Lessons/OnesComplement/index.html
+
 http://www.tutorialspoint.com/python/python_pass_statement.htm
+
 https://delightlylinux.wordpress.com/2014/10/13/binary-lesson-12-ones-complement-and-twos-complement/
+
+https://wiki.python.org/moin/BitwiseOperators
 
 
 
