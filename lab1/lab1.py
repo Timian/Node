@@ -170,7 +170,7 @@ def ascii2Hex(c):
     return '{0:02x}'.format(ord(c))
     
 def transferHex(string):
-    l2 = list(string)
+    l2 = list(string
     for c in l2:
         print "Den heksadesimale representasjonen for bokstavene i ordet ditt er %s" % ascii2Hex(c)
         
