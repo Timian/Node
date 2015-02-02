@@ -182,7 +182,6 @@ transferHex(string)
 ## Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
 ## Bruker skriver inn en bokstav. Unicode er ok.
 print "\nSkriv en bokstav, gjerne Æ Ø eller Å. Den kan være stor eller liten:" 
-char = raw_input("> ")
 character = unicode(raw_input(), 'utf8')
 
 def unicodeBin(character):
