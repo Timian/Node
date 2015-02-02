@@ -170,7 +170,7 @@ def ascii2Hex(c):
     return '{0:02x}'.format(ord(c))
     
 def transferHex(string):
-    l2 = list(string
+    l2 = list(string)
     for c in l2:
         print "Den heksadesimale representasjonen for bokstavene i ordet ditt er %s" % ascii2Hex(c)
         
@@ -181,28 +181,27 @@ transferHex(string)
 ## Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
 ## Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
 ## Bruker skriver inn en bokstav. Unicode er ok.
-#character = unicode(raw_input(), 'utf8')
-#
-#def unicodeBin(character):
-#	# innhold i funksjonen vår:
-#	return '{0:08b}'.format(ord(character)) #formaterer med bruk av ord() funksjonen
-## printer resultatet av funksjonen vår
-#print "Med ord() funksjonen formateres bokstaven din til %r" % (ord(character))
-#print "I binær er den %r" % (unicodeBin(character))		
+character = unicode(raw_input(), 'utf8')
 
-print "\nSkriv en bokstav, gjerne Æ Ø eller Å. Den kan være stor eller liten:" 
-
-char = raw_input("> ")
 def unicodeBin(character):
-	utf8_byte_array = bytearray(format(character))
-	uba = []
-	# Itererer gjennom det formaterte unicodesumbolet
-	for n in range (len(format(character))):
-		uba.append("{0:08b}".format(utf8_byte_array[n]))
-		# konverterer listen til en string bestående av den binære koden til symbolet
-		uni_bin = ' '.join(uba)
-	return uni_bin
-print unicodeBin(char)
+	# innhold i funksjonen vår:
+	return '{0:08b}'.format(ord(character)) #formaterer med bruk av ord() funksjonen
+# printer resultatet av funksjonen vår
+print "Med ord() funksjonen formateres bokstaven din til %r" % (ord(character))
+print "I binær er den %r" % (unicodeBin(character))		
+
+#print "\nSkriv en bokstav, gjerne Æ Ø eller Å. Den kan være stor eller liten:" 
+#char = raw_input("> ")
+#def unicodeBin(character):
+#	utf8_byte_array = bytearray(format(character))
+#	uba = []
+#	# Itererer gjennom det formaterte unicodesumbolet
+#	for n in range (len(format(character))):
+#		uba.append("{0:08b}".format(utf8_byte_array[n]))
+#		# konverterer listen til en string bestående av den binære koden til symbolet
+#		uni_bin = ' '.join(uba)
+#	return uni_bin
+#print unicodeBin(char)
 
 #
 # Oppgave 9
