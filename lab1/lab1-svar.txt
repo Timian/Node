@@ -27,7 +27,9 @@ bin(ord('a')) = 0b1100001
 bin(ord('A')) = 0b1000001
 
 Forskjellgen på bokstaven 'a' og 'A' er det tredje sifferet som bestemmer
-om den enkelte bokstaven = liten/stor bokstav
+om den enkelte bokstaven = liten/stor bokstav, 
+
+
 
 3. Pass
 - Pass er en "null" operasjon som vil si at ingenting skjer 
