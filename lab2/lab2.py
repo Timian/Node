@@ -109,7 +109,7 @@ f. eks:
 """
 def roman_math(roman, romanTest):
 
-    answer = " ".join([roman,romanTest])
+    answer = "".join([roman,romanTest])
 
     
     if roman == "VIII" and romanTest == "I":
