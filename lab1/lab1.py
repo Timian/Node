@@ -6,7 +6,12 @@
 #  lab1.py - kildekode vil inneholde studentenes løsning.
 #         
 #
+# 	Alle tester og variabler kan flyttes til test. Fullfør dette før mappeinnl.
+#		- jørgen
 #
+#
+#
+
 import sys
 
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
