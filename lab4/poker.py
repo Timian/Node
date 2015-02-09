@@ -2,7 +2,7 @@
 #
 #
 #	We are going to use representants for all the 52 cards we use in poker
-#		Suit: S = Spare, H = Hearts, D = Dames, C = Clubs 
+#		Suit: S = Spades, H = Hearts, D = Diamonds, C = Clubs 
 #		Rank: A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
 #
 #	Notater til Node (Fjernes for innlevering):
