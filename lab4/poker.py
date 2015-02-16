@@ -52,14 +52,47 @@ def hand_rank(hand):
 	# HA, HK, HQ, HJ, H10, H9, H8, H7, H6, H5, H4, H3, H2
 	# DA, DK, DQ, DJ, D10, D9, D8, D7, D6, D5, D4, D3, D2
 	# CA, CK, CQ, CJ, C10, C9, C8, C7, C6, C5, C4, C3, C2
+	ranks = card_ranks(hand)
+	if straight(ranks) and flush(hand):
+		return (8, max(ranks))
+	elif kind(4, ranks):
+		return (7, kind(4, ranks), kind(1, ranks))
+	elif ...
+	
+def card_ranks(cards):
+	"return a list of the ranks, sorted with higher first"
+	ranks = [r for r,s in cards]
+	ranks.sort(reverse=True)
+	return ranks
+
+def straight(ranks):
+	"Return True if the ordered ranks form a 5-card straight"
+	return (max(ranks)-min(ranks) == 4) and len(set(ranks)) == 5
+
+def flush(hand):
+	"Return True if all the cards have the same suit"
+	suits = [s for r,s in hand]
+	return len(set(suits)) == 1
+
+def kind(n, ranks):
+	"Return the first rank that this hand has exactly n of"
+	"Return None if there is no n-of-a-kind in the hand"
+	for r in  ranks:
+		if ranks.count(r) == n: return r
+	return None
+
+def two_pair(ranks):
+	"If there are two pair, return the two ranks as a"
+	"tuple: (highest, lowest); otherwise return None"
 
 
 def test(): 
 	"test cases for the function in poker program"
 	sf = "6C 7C 8C 9C TC".SPLIT() # Straight Flush
-	fk =
-	fh =
+	fk = "9D 9H 9S 9C 7D".split() #Four of a kind
+	fh = "TD TC TH 7C 7D".split() #Full house
 	assert poker ([sf, fk, fh]) = sf
 	return "tests pass"
+print test()
 
 
