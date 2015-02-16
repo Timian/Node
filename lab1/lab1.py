@@ -251,7 +251,7 @@ def test():
 	assert bitOr(0, 1) == 1
 	assert ascii8Bin('a') == '01100001'
 	assert ascii8Bin('A') == '01000001'
-#	assert transferBin('a') == '01100001'
+	assert transferBin('l') == '6c'
 #   assert transferHex('a') == 61
 	assert unicodeBin('å') == '11000011 10100101'
 	# Dine egne tester
