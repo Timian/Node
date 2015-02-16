@@ -6,7 +6,12 @@
 #  lab1.py - kildekode vil inneholde studentenes løsning.
 #         
 #
+# 	Alle tester og variabler kan flyttes til test. Fullfør dette før mappeinnl.
+#		- jørgen
 #
+#
+#
+
 import sys
 
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
@@ -15,8 +20,8 @@ gruppe = { 	'student1': 'Daniel Eide', \
            	'student3': 'Jørn Utheim-Olsen', \
            	'student3': 'Jonas Dam', \
            	'student3': 'Elaine Sajets', \
-           	'student3': 'test 6', \
-           	'student3': 'test 7', \
+           	'student3': 'Christian Fredrik Thorne', \
+           	'student3': 'Bastian Strang', \
            	'student3': 'test 8', \
 }
 
@@ -33,6 +38,7 @@ gruppe = { 	'student1': 'Daniel Eide', \
 #    \_ /_/
 #    (./
 #     '` 
+
 
 ice = """
        \\/_
@@ -112,17 +118,17 @@ print bitOr(1, 0)
 # 
 # ord() funksjonen støtter ikke bruk av f. eks bokstaver som æøå
 
-print "\nType a single letter, can be upper or lower case:" 
+print "\nSkriv en enkel bokstav. Den kan være stor eller liten:" 
 # gjør bokstav valgfri for brukeren
-letter = raw_input() 
+letter = raw_input("> ") 
 
 # definerer en funksjon med letter variabelen
 def ascii8Bin(letter): 
 	# innhold i funksjonen vår:
 	return '{0:08b}'.format(ord(letter)) #formaterer med bruk av ord() funksjonen
 # printer resultatet av funksjonen vår
-print "With the ord() function your letter formats to %r" % (ord(letter))
-print "Then, formatted to binary it is %r" % (ascii8Bin(letter))
+print "Med ord() funksjonen formateres bokstaven din til %r" % (ord(letter))
+print "I binær er den %r" % (ascii8Bin(letter))
 
 
 
@@ -137,8 +143,8 @@ print "Then, formatted to binary it is %r" % (ascii8Bin(letter))
 #	 Skriv selv inn tester ved å bruke assert i funksjonen test()
 #
 
-print "\nType a word with maximum of 6 letters, can be upper or lower case:"
-string = raw_input()
+print "\nSkriv ett ord med max 6 bokstaver, kan være store eller små bokstaver:"
+string = raw_input("> ")
 
 def transferBin(string): 
 	# vi lager variabel 'l' til en liste av string
@@ -146,7 +152,7 @@ def transferBin(string):
 	# itererer over l for å finne c. 
 	for c in l:
 		# skriv ut den binære representasjon av hvert tegn (bruk ascii8Bin funksjonen din)
-		print "Den binære representasjonen for %s" % (ascii8Bin(c)) 
+		print "Den binære representasjonen for bokstavene i ordet ditt er %s" % (ascii8Bin(c)) 
 # bruk funksjonen vår
 transferBin(string)
 
@@ -163,25 +169,46 @@ transferBin(string)
 
 
 print "\nSkriv ett ord med max 6 bokstaver, kan være store eller små bokstaver:"
-string = raw_input()
+string = raw_input("> ")
 
 def ascii2Hex(c):
     #innhold i funksjonen vår
     return '{0:02x}'.format(ord(c))
     
 def transferHex(string):
-    a2 = list(string)
-    for c in a2:
+    l2 = list(string)
+    for c in l2:
         print "Den heksadesimale representasjonen for bokstavene i ordet ditt er %s" % ascii2Hex(c)
         
 transferHex(string)
 
+##
+## Oppgave 8
+## Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
+## Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
+## Bruker skriver inn en bokstav. Unicode er ok.
+#print "\nSkriv en bokstav, gjerne Æ Ø eller Å. Den kan være stor eller liten:" 
+#character = unicode(raw_input(), 'utf8')
 #
-# Oppgave 8
-# 		Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
-# 		Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
+#def unicodeBin(character):
+#	# innhold i funksjonen vår:
+#	return '{0:08b}'.format(ord(character)) #formaterer med bruk av ord() funksjonen
+# printer resultatet av funksjonen vår
+#print "Med ord() funksjonen formateres bokstaven din til %r" % (ord(character))
+#print "I binær er den %r" % (unicodeBin(character))		
+
+print "\nSkriv en bokstav, gjerne Æ Ø eller Å. Den kan være stor eller liten:" 
+char = raw_input("> ")
 def unicodeBin(character):
-	pass	
+	utf8_byte_array = bytearray(format(character))
+	uba = []
+	# Itererer gjennom det formaterte unicodesumbolet
+	for n in range (len(format(character))):
+		uba.append("{0:08b}".format(utf8_byte_array[n]))
+		# konverterer listen til en string bestående av den binære koden til symbolet
+		uni_bin = ' '.join(uba)
+	return uni_bin
+print unicodeBin(char)
 
 #
 # Oppgave 9
@@ -213,8 +240,9 @@ def printSysInfo():
 	print "User Name: " +platform.uname()[1]
 	print "Distribution: %s" %(platform.linux_distribution(), )
 
-printSysInfo()
+#   IMPORT PSUTIL OG IMPLEMENTER DEN
 
+printSysInfo()
 
 
 def test():
@@ -223,14 +251,14 @@ def test():
 	assert bitOr(0, 1) == 1
 	assert ascii8Bin('a') == '01100001'
 	assert ascii8Bin('A') == '01000001'
-	# Skriv her inn passende tester for tarnsferBin og transferHex funksjoner
-	# fra oppgavene 6 og 7
-	assert unicodeBin('å') == '11100101'
+#	assert transferBin('a') == '01100001'
+#   assert transferHex('a') == 61
+	assert unicodeBin('å') == '11000011 10100101'
 	# Dine egne tester
 	return "Testene er fullført uten feil."
 
 
 # Bruk denne funksjonen for å vise at alle testene er kjørt feilfritt
-#print test()
+print test()
 		
 
