@@ -1,100 +1,146 @@
-# -*- coding: utf-8 -*-
-
-#	Poker game by Node
+import random 
+# create our deck with 52 cards
 #
+#	Lessons learned:
+#		*Define all your pieces
+#		*Reuse code and DRY (Don't repeat yourself)
+#		*Use testing and assert proactively
+#		*
 #
-#	We are going to use representants for all the 52 cards we use in poker
-#		Suit: S = Spades, H = Hearts, D = Diamonds, C = Clubs 
-#		Rank: A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
-#
-#	Notater til Node (Fjernes for innlevering):
-#		Les Lab4 oppgavetekst noye
-#		Folg Udacity kurset som Janis la ut og snakker om i oppgaveteksten
-#		Importer random. Vi kan bruke funksjoner som shuffle() som stokker
-#		innehold i en variabel
-#		Texas hold em regler, med 5 kort pa en hand
-#		Bruke max() funksjon: max("A", 3) = A
-#								max('6C', 'QC') = 'QC'
-#							tuples: 	max((3, 2), (11, 2)) = (11, 2)
-#
-#		Skriv en funksjon for å bestemme hvordan max() skal sortere input.
-#		Default er ascii men man kan lage en egen funksjon for hvordan input
-#		skal bli prioritert. 
-#				print max([3, 4, -5, 0], key = abs) max will 
-#												sort according to the abs function
-#
-#		join() og split() funksjoner
-#		
-#		
 
 
-import random
-						#Ranks:					Suits:
-mydeck = [r+s for r in '23456789TJQKA' for s in 'SHDC']
-
-random.shuffle(mydeck)
-
-print mydeck
-
-hand = 5 # how many cards per hand
-
-amount_hands = 3 # how many hands you want to be in the play
-
-[mydeck[hand*i:hand*(i+1)] for i in range(amount_hands)]
+def deal(numhands, n=5): #param numhands how many players. param n how many cards
+    """Creates 52 cards. Then deals  out n cards to numhands of players.
+        Will raise an error if numhands*n >= 52. random.sample(52, 5*numhands) 
+        shuffles and deals out the amount of needed cards for the table.
+        @param numhands how many players
+        @param n how manycards per player."""
+	deck=[card+suit for card in '23456789TJQKA' for suit in 'HDCS']
+    if numhands*n > len(deck):
+        raise Exception('Not enough cards.')
+    chosen = random.sample(deck,n*numhands) 
+    return [chosen[i:i+n] for i in range(numhands)]
 
 
 def poker(hands):
-	"Return the best hand: poker([hand, ...]) => hand"
-	return max(hands, key=hand_rank)
+    """Take all hands in play and return the best rank. Takes use of 
+        allmax() to filter out ties. With this implemented, ties will share
+        the pot equally.
+        @param hands how many players around the table."""
+    return allmax(hands, key=hand_rank)
 
 
-def hand_rank(hand):
-	return pass 
-	# SA, SK, SQ, SJ, S10, S9, S8, S7, S6, S5, S4, S3, S2
-	# HA, HK, HQ, HJ, H10, H9, H8, H7, H6, H5, H4, H3, H2
-	# DA, DK, DQ, DJ, D10, D9, D8, D7, D6, D5, D4, D3, D2
-	# CA, CK, CQ, CJ, C10, C9, C8, C7, C6, C5, C4, C3, C2
-	ranks = card_ranks(hand)
-	if straight(ranks) and flush(hand):
-		return (8, max(ranks))
-	elif kind(4, ranks):
-		return (7, kind(4, ranks), kind(1, ranks))
-	elif ...
-	
-def card_ranks(cards):
-	"return a list of the ranks, sorted with higher first"
-	ranks = [r for r,s in cards]
-	ranks.sort(reverse=True)
-	return ranks
+def allmax(iterable, key=None):
+    """List comprehension:
+        In poker(hands) we call this function with params 
+        (hands, key=hand_rank). Iterates through hands and return 
+        a list of all items = max of the iterable"""
+    return [i for i in iterable if key(i) == max([key(j) for j in iterable])]
+
 
 def straight(ranks):
-	"Return True if the ordered ranks form a 5-card straight"
-	return (max(ranks)-min(ranks) == 4) and len(set(ranks)) == 5
+    """ If ranks is equal to 5 straight cards, return True.
+        @param ranks is the value of the card. ex. [2C, 3D, 4C, 5S, 6C]"""
+    return ranks == range(ranks[0],ranks[0]-5, -1)
+
 
 def flush(hand):
-	"Return True if all the cards have the same suit"
-	suits = [s for r,s in hand]
-	return len(set(suits)) == 1
+    """ If hand is equal to 5 of the same suit, return True.
+    @param hand is the suit for each hand."""
+    return [s for r,s in hand].count(hand[0][1]) == 5
 
 def kind(n, ranks):
-	"Return the first rank that this hand has exactly n of"
-	"Return None if there is no n-of-a-kind in the hand"
-	for r in  ranks:
-		if ranks.count(r) == n: return r
-	return None
+    #Return the first rank that this hand has exactly n of.
+    #Return None if there is no n-of-a-kind in the hand.
+    """ Checks for cards with more than one of the same rank.
+        ex. [8C, 8D, 8H, 2D, 5H] <- Three of a kind
+        @param n how many of ranks we have in our hand.
+        @param ranks is the card we have more than 1 of
+        @return none if no cards are duplicated."""
+    for r in ranks:
+        if ranks.count(r) == n: return r 
+    return None
 
+"""
+deal()
+"""
 def two_pair(ranks):
-	"If there are two pair, return the two ranks as a"
-	"tuple: (highest, lowest); otherwise return None"
+    """ Check if there are two pairs. Return the highest pair 
+        first and the lowest pair second, both as tuples.
+        ex. [4C, 4H, 9S, 9H, QD] <- Two pairs
+        @param ranks is the value of the card.
+        @return none if not two pairs in hand."""
+    if ranks.count(ranks[1]) + ranks.count(ranks[3]) == 4:
+        return (ranks[1], ranks[3])
 
 
-def test(): 
-	"test cases for the function in poker program"
-	sf = "6C 7C 8C 9C TC".SPLIT() # Straight Flush
-	fk = "9D 9H 9S 9C 7D".split() #Four of a kind
-	fh = "TD TC TH 7C 7D".split() #Full house
-	assert poker ([sf, fk, fh]) = sf
-	return "tests pass"
-print test()
+
+"""
+def card_ranks(cards):
+    "Return a list of the ranks, sorted with higher first."
+    assignValue = {
+        'T': 10,
+        'J': 11,
+        'Q': 12,
+        'K': 13,
+        'A': 14
+    }
+    ranks = []
+    for r, s in cards:
+        if assignValue.has_key(r):
+            ranks.append(assignValue[r])
+        else:
+            ranks.append(int(r))
+    #ranks = [assignValue[r] if r in assignValue else int(r) for r,s in cards]
+    ranks.sort(reverse=True)
+    return [5, 4, 3, 2, 1] if (ranks == [14, 5, 4, 3, 2]) else ranks
+
+"""
+deal()
+"""
+def hand_rank(hand):
+    """Return a value indicating the ranking of a hand."""
+    ranks = card_ranks(hand) 
+    if straight(ranks) and flush(hand):
+        return (8, max(ranks))
+    elif kind(4, ranks):
+        return (7, kind(4, ranks), kind(1, ranks))
+    elif kind(3, ranks) and kind(2, ranks):
+        return (6, kind(3, ranks), kind(2, ranks))
+    elif flush(hand):
+        return (5, ranks)
+    elif straight(ranks):
+        return (4, max(ranks))
+    elif kind(3, ranks):
+        return (3, kind(3, ranks), ranks)
+    elif two_pair(ranks):
+        return (2, two_pair(ranks), ranks)
+    elif kind(2, ranks):
+        return (1, kind(2, ranks), ranks)
+    else:
+        return (0, ranks)
 
 
+"""
+test()
+"""
+def test():
+	"Test cases for the functions in poker program."
+	sf = "6C 7C 8C 9C TC".split() # Straight Flush
+	fk = "9D 9H 9S 9C 7D".split() # Four of a Kind
+	fh = "TD TC TH 7C 7D".split() # Full House
+	tp = "5S 5D 9H 9C 6S".split() # Two pairs
+	fkranks = card_ranks(fk)
+	tpranks = card_ranks(tp)
+	assert kind(4, fkranks) == 9
+	assert kind(3, fkranks) == None
+	assert kind(2, fkranks) == None
+	assert kind(1, fkranks) == 7
+	assert two_pair(tpranks) == (9, 5)
+	assert two_pair(fkpranks) == None
+	return 'tests pass'
+
+
+if __name__ == '__main__':
+	import timeit
+	print(timeit.timeit("straight([9, 8, 7, 6, 5])", setup = "from __main__ import straight"))
