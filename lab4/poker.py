@@ -5,21 +5,21 @@ import random
 #		*Define all your pieces
 #		*Reuse code and DRY (Don't repeat yourself)
 #		*Use testing and assert proactively
-#		*
+#		
 #
 
 
 def deal(numhands, n=5): #param numhands how many players. param n how many cards
-    """Creates 52 cards. Then deals  out n cards to numhands of players.
+	"""Creates 52 cards. Then deals  out n cards to numhands of players.
         Will raise an error if numhands*n >= 52. random.sample(52, 5*numhands) 
         shuffles and deals out the amount of needed cards for the table.
         @param numhands how many players
         @param n how manycards per player."""
-	deck=[card+suit for card in '23456789TJQKA' for suit in 'HDCS']
-    if numhands*n > len(deck):
-        raise Exception('Not enough cards.')
-    chosen = random.sample(deck,n*numhands) 
-    return [chosen[i:i+n] for i in range(numhands)]
+	deck = [card+suit for card in '23456789TJQKA' for suit in 'HDCS']
+	if numhands*n > len(deck):
+		raise Exception('Not enough cards.')
+	chosen = random.sample(deck,n*numhands)
+	return [chosen[i:i+n] for i in range(numhands)]
 
 
 def poker(hands):
@@ -61,9 +61,7 @@ def kind(n, ranks):
         if ranks.count(r) == n: return r 
     return None
 
-"""
-deal()
-"""
+
 def two_pair(ranks):
     """ Check if there are two pairs. Return the highest pair 
         first and the lowest pair second, both as tuples.
@@ -74,10 +72,14 @@ def two_pair(ranks):
         return (ranks[1], ranks[3])
 
 
-
-"""
 def card_ranks(cards):
-    "Return a list of the ranks, sorted with higher first."
+    """ Creates a list to set integer values to the cards 
+    	which represents T(en), J(ack), Q(ueen), K(ing) A(ce).
+    	We then create an empty list called ranks.
+    	We then loop through our current hand and store 
+    	the cards with sorted values in the ranks list.
+    	Also, if we get a flush from A - 5, we need to make the
+    	A = 1. This is what we do in the last line"""
     assignValue = {
         'T': 10,
         'J': 11,
@@ -95,12 +97,13 @@ def card_ranks(cards):
     ranks.sort(reverse=True)
     return [5, 4, 3, 2, 1] if (ranks == [14, 5, 4, 3, 2]) else ranks
 
-"""
-deal()
-"""
+
 def hand_rank(hand):
-    """Return a value indicating the ranking of a hand."""
-    ranks = card_ranks(hand) 
+	""" Return the best hand in play, ranking them with
+    	tuples. Sort every hand from 1-8, then the next 
+    	value is based on ranks, suits etc."""
+	ranks = card_ranks(hand)
+
     if straight(ranks) and flush(hand):
         return (8, max(ranks))
     elif kind(4, ranks):
@@ -121,11 +124,10 @@ def hand_rank(hand):
         return (0, ranks)
 
 
-"""
-test()
-"""
+
 def test():
-	"Test cases for the functions in poker program."
+	"""Test different functions, to check if they
+		return the right value"""
 	sf = "6C 7C 8C 9C TC".split() # Straight Flush
 	fk = "9D 9H 9S 9C 7D".split() # Four of a Kind
 	fh = "TD TC TH 7C 7D".split() # Full House
@@ -142,5 +144,6 @@ def test():
 
 
 if __name__ == '__main__':
+	""" Checks how much time the application runs in"""
 	import timeit
 	print(timeit.timeit("straight([9, 8, 7, 6, 5])", setup = "from __main__ import straight"))

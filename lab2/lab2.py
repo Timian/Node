@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 import math 
 import re
-from lab2_dict import INT_TO_ROMAN, ROMAN_TO_INT #, MATH
+from lab2_dict import INT_TO_ROMAN, ROMAN_TO_INT
 
-"""
-    @author: tmackenzie
-"""
 
 # used in roman_to_int
 ROMAN_VALIDATE_RE = re.compile('^[M]{4,}')
@@ -118,6 +115,7 @@ def roman_math(roman, romanTest):
         answer = "IV"
     if roman == "XIII" and romanTest == "I":
         answer = "XIV"
+
 
 
 
