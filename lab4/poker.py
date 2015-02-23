@@ -1,25 +1,32 @@
+#   A script that simulates a poker game. Input how many players and how many cards in each hand, 
+#   then return the best rank and declare a winner.
+#
+#
+#   Author:     Jorgen Lybeck Hansen
+#   Group:      Node 
+#   Version:    02.23.2015
+#   Notes:
+#               I followed the UDACITY: Design of Computer Programs course while trying to write
+#               my own functions. 
+#
+#   Bugs: 
+#		         None
+#
 import random 
-# create our deck with 52 cards
-#
-#	Lessons learned:
-#		*Define all your pieces
-#		*Reuse code and DRY (Don't repeat yourself)
-#		*Use testing and assert proactively
-#		
-#
 
 
-def deal(numhands, n=5): #param numhands how many players. param n how many cards
-	"""Creates 52 cards. Then deals  out n cards to numhands of players.
+def deal(numhands, n=5):
+    """Creates 52 cards. Then deals  out n cards to numhands of players.
         Will raise an error if numhands*n >= 52. random.sample(52, 5*numhands) 
         shuffles and deals out the amount of needed cards for the table.
         @param numhands how many players
         @param n how manycards per player."""
-	deck = [card+suit for card in '23456789TJQKA' for suit in 'HDCS']
-	if numhands*n > len(deck):
-		raise Exception('Not enough cards.')
-	chosen = random.sample(deck,n*numhands)
-	return [chosen[i:i+n] for i in range(numhands)]
+    deck = [card+suit for card in '23456789TJQKA' for suit in 'HDCS']
+    if numhands*n > len(deck):
+        raise Exception('Not enough cards.')
+    random.shuffle(deck)
+    return [deck[n*i:n*(i+1)] for i in range(numhands)]
+            # [deck[i:i+n] 
 
 
 def poker(hands):
@@ -29,6 +36,29 @@ def poker(hands):
         @param hands how many players around the table."""
     return allmax(hands, key=hand_rank)
 
+def hand_rank(hand):
+    """ Return the best hand in play, ranking them with
+        tuples. Sort every hand from 1-8, then the next 
+        value is based on ranks, suits etc."""
+    ranks = card_ranks(hand)
+    if straight(ranks) and flush(hand):
+        return (8, max(ranks))
+    elif kind(4, ranks):
+        return (7, kind(4, ranks), kind(1, ranks))
+    elif kind(3, ranks) and kind(2, ranks):
+        return (6, kind(3, ranks), kind(2, ranks))
+    elif flush(hand):
+        return (5, ranks)
+    elif straight(ranks):
+        return (4, max(ranks))
+    elif kind(3, ranks):
+        return (3, kind(3, ranks), ranks)
+    elif two_pair(ranks):
+        return (2, two_pair(ranks), ranks)
+    elif kind(2, ranks):
+        return (1, kind(2, ranks), ranks)
+    else:
+        return (0, ranks)
 
 def allmax(iterable, key=None):
     """List comprehension:
@@ -98,33 +128,6 @@ def card_ranks(cards):
     return [5, 4, 3, 2, 1] if (ranks == [14, 5, 4, 3, 2]) else ranks
 
 
-def hand_rank(hand):
-	""" Return the best hand in play, ranking them with
-    	tuples. Sort every hand from 1-8, then the next 
-    	value is based on ranks, suits etc."""
-	ranks = card_ranks(hand)
-
-    if straight(ranks) and flush(hand):
-        return (8, max(ranks))
-    elif kind(4, ranks):
-        return (7, kind(4, ranks), kind(1, ranks))
-    elif kind(3, ranks) and kind(2, ranks):
-        return (6, kind(3, ranks), kind(2, ranks))
-    elif flush(hand):
-        return (5, ranks)
-    elif straight(ranks):
-        return (4, max(ranks))
-    elif kind(3, ranks):
-        return (3, kind(3, ranks), ranks)
-    elif two_pair(ranks):
-        return (2, two_pair(ranks), ranks)
-    elif kind(2, ranks):
-        return (1, kind(2, ranks), ranks)
-    else:
-        return (0, ranks)
-
-
-
 def test():
 	"""Test different functions, to check if they
 		return the right value"""
@@ -139,11 +142,13 @@ def test():
 	assert kind(2, fkranks) == None
 	assert kind(1, fkranks) == 7
 	assert two_pair(tpranks) == (9, 5)
-	assert two_pair(fkpranks) == None
+	assert two_pair(fkranks) == None
 	return 'tests pass'
 
 
 if __name__ == '__main__':
-	""" Checks how much time the application runs in"""
-	import timeit
-	print(timeit.timeit("straight([9, 8, 7, 6, 5])", setup = "from __main__ import straight"))
+    """ Checks how much time the application runs in"""
+    import timeit
+    time = (timeit.timeit("straight([9, 8, 7, 6, 5])", setup = "from __main__ import straight"))
+    print ("Script runs in: %s ms") % (time)
+   
